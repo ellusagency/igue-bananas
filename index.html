@@ -404,18 +404,25 @@
 
   /* ===================== PRODUTO ===================== */
   .produto{padding:96px 0;background:var(--branco)}
-  .produto .grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
-  .prod-visual{aspect-ratio:1/1;border-radius:26px;position:relative;overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--cinza-claro);background:var(--amarelo-soft)}
-  .prod-visual.nanica{background:var(--verde-soft)}
-  .prod-visual img{width:100%;height:100%;object-fit:cover}
-  .prod-visual .selo{position:absolute;top:18px;left:18px;background:var(--amarelo);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.78rem;padding:8px 14px;border-radius:999px;letter-spacing:.04em;box-shadow:var(--sombra-sm)}
+  .produto .section-head{margin-bottom:64px}
+  .produto .grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
+  .prod-visual{aspect-ratio:1/1;border-radius:26px;position:relative;overflow:hidden;border:1px solid var(--cinza-claro);background:var(--amarelo-soft);box-shadow:18px 18px 0 var(--amarelo-borda),0 26px 50px -26px rgba(0,0,0,.32)}
+  .prod-visual.nanica{background:var(--verde-soft);box-shadow:-18px 18px 0 rgba(126,171,80,.4),0 26px 50px -26px rgba(0,0,0,.32)}
+  .prod-visual img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+  .prod-visual:hover img{transform:scale(1.05)}
+  .prod-visual .selo{position:absolute;top:18px;left:18px;z-index:2;background:var(--amarelo);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.78rem;padding:8px 15px;border-radius:999px;letter-spacing:.04em;box-shadow:var(--sombra-sm)}
   .prod-visual .selo.verde{background:var(--verde);color:#fff}
-  .prod-copy h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;color:var(--titulo);margin-bottom:16px}
-  .prod-copy .lead{font-size:1.08rem;margin-bottom:24px;color:var(--texto)}
+  .prod-kicker{display:inline-flex;align-items:center;gap:9px;font-family:'Poppins',sans-serif;font-weight:700;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--verde-texto);margin-bottom:14px}
+  .prod-kicker::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--amarelo);box-shadow:0 0 0 4px rgba(252,207,64,.22)}
+  .prod-kicker.verde::before{background:var(--verde);box-shadow:0 0 0 4px rgba(126,171,80,.2)}
+  .prod-copy h3{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;color:var(--titulo);margin-bottom:16px;letter-spacing:-.01em;line-height:1.12}
+  .prod-copy .lead{font-size:1.08rem;margin-bottom:24px;color:var(--texto);line-height:1.7}
   .prod-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
-  .prod-chips span{display:inline-flex;align-items:center;background:var(--creme);border:1px solid var(--cinza-claro);border-radius:999px;padding:10px 18px;font-weight:600;font-size:.88rem;color:var(--titulo)}
+  .prod-chips span{display:inline-flex;align-items:center;background:var(--creme);border:1px solid var(--cinza-claro);border-radius:999px;padding:10px 18px 10px 14px;font-weight:600;font-size:.88rem;color:var(--titulo)}
+  .prod-chips span::before{content:"";flex:none;width:17px;height:17px;margin-right:9px;border-radius:50%;background:var(--amarelo) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 7.3l2.6 2.6L11 4' fill='none' stroke='%230e0e0c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat}
   .prod-chips.verde span{background:var(--verde-soft);border-color:rgba(79,122,46,.2);color:var(--verde-texto)}
-  .prod-divider{border:none;border-top:1px solid var(--cinza-claro);margin:72px 0}
+  .prod-chips.verde span::before{background-color:var(--verde)}
+  .prod-divider{border:none;border-top:1px solid var(--cinza-claro);margin:80px 0}
   .produto .grid.flip{grid-template-columns:1.05fr .95fr}
 
   /* ===================== ONDE ATENDEMOS ===================== */
@@ -550,6 +557,9 @@
     .produto{padding:64px 0}
     .produto .grid,.produto .grid.flip{gap:32px}
     .produto .grid.flip .prod-visual{order:-1}
+    .produto .section-head{margin-bottom:40px}
+    .prod-visual,.prod-visual.nanica{box-shadow:10px 10px 0 var(--amarelo-borda),0 20px 40px -24px rgba(0,0,0,.3)}
+    .prod-visual.nanica{box-shadow:10px 10px 0 rgba(126,171,80,.38),0 20px 40px -24px rgba(0,0,0,.3)}
     .prod-divider{margin:48px 0}
     .stacks-scroller{height:auto;padding:0 16px}
     .stacks-sticky{position:static;height:auto;display:block}
@@ -863,14 +873,19 @@
 <!-- ============ 6. PRODUTO — BANANA PRATA ============ -->
 <section class="produto" id="produto">
   <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="justify-content:center">Nossos produtos</span>
+      <h2>Duas variedades, o mesmo padrão de qualidade.</h2>
+      <p>Da prata firme e marcante à nanica suave e versátil — cada caixa carrega o mesmo rigor do campo à entrega.</p>
+    </div>
     <div class="grid">
       <div class="prod-visual reveal">
         <span class="selo">Banana Prata</span>
         <img src="imagens/banana_amarela.jpeg" alt="Cacho de banana prata com a etiqueta da marca Igue Bananas" />
       </div>
       <div class="prod-copy reveal">
-        <span class="eyebrow">Produto</span>
-        <h2>Banana Prata: a especialidade da casa.</h2>
+        <span class="prod-kicker">Carro-chefe da casa</span>
+        <h3>Banana Prata: a especialidade da casa.</h3>
         <p class="lead">A banana prata é o coração da Igue. Foi a aposta pioneira da nossa família e segue sendo nossa referência: fruta firme, de sabor marcante e excelente resistência — qualidade garantida da colheita à entrega.</p>
         <div class="prod-chips">
           <span>Sabor marcante</span>
@@ -884,8 +899,8 @@
 
     <div class="grid flip">
       <div class="prod-copy reveal">
-        <span class="eyebrow">Produto</span>
-        <h2>Banana Nanica: frescor e versatilidade.</h2>
+        <span class="prod-kicker verde">Frescor e versatilidade</span>
+        <h3>Banana Nanica: frescor e versatilidade.</h3>
         <p class="lead">A nanica da Igue tem casca fina, polpa suave e doçura equilibrada — perfeita para consumo in natura, processamento e food service. Colhida com o mesmo rigor da prata, chega firme, uniforme e pronta para encantar.</p>
         <div class="prod-chips verde">
           <span>Polpa suave e adocicada</span>
