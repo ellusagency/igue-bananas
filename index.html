@@ -343,21 +343,36 @@
   .difs-outro p strong{color:var(--titulo);font-weight:700}
 
   /* ===================== PROCESSO (sequencial + fotos · fundo verde) ===================== */
-  .processo{padding:90px 0;background:var(--verde)}
+  .processo{padding:90px 0;background:radial-gradient(130% 90% at 50% -8%,#8FBC5C 0%,var(--verde) 52%)}
   .processo .section-head h2{color:#0e2606}
   .processo .section-head p{color:rgba(0,0,0,.66)}
   .proc-flow{position:relative;max-width:960px;margin:0 auto}
-  .proc-flow::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:2px;background:rgba(0,0,0,.22);transform:translateX(-50%)}
+  /* trilha base + linha de progresso animada */
+  .proc-flow::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:3px;background:rgba(0,0,0,.16);border-radius:3px;transform:translateX(-50%)}
+  .proc-progress{
+    position:absolute;left:50%;top:10px;width:3px;height:0;
+    transform:translateX(-50%);border-radius:3px;z-index:1;
+    background:linear-gradient(180deg,var(--amarelo),#F3B518);
+    box-shadow:0 0 14px rgba(252,207,64,.6);will-change:height;
+  }
+  .proc-progress::after{
+    content:"";position:absolute;left:50%;bottom:-5px;width:13px;height:13px;
+    border-radius:50%;transform:translateX(-50%);background:var(--amarelo);
+    box-shadow:0 0 0 5px rgba(252,207,64,.3),0 0 18px rgba(252,207,64,.85);
+  }
   .proc-step{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;margin-bottom:34px}
   .proc-step:last-child{margin-bottom:0}
-  .proc-node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#0e2606;color:var(--amarelo);display:grid;place-items:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:.95rem;z-index:3;box-shadow:0 0 0 5px var(--verde)}
+  .proc-node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#0e2606;color:var(--amarelo);display:grid;place-items:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:.95rem;z-index:3;box-shadow:0 0 0 5px var(--verde);transition:background .4s ease,color .4s ease,box-shadow .4s ease}
+  .proc-node.reached{background:var(--amarelo);color:#0e2606;box-shadow:0 0 0 5px var(--verde),0 0 0 7px rgba(252,207,64,.55),0 0 22px rgba(252,207,64,.6)}
   .proc-media{aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#fff;box-shadow:var(--sombra);display:flex;align-items:center;justify-content:center}
-  .proc-media img{width:100%;height:100%;object-fit:cover}
+  .proc-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.25,.46,.45,.94)}
+  .proc-step:hover .proc-media img{transform:scale(1.045)}
   .proc-ph{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--verde-texto);text-align:center;padding:20px}
   .proc-ph svg{width:40px;height:40px}
   .proc-ph span{font-size:.84rem;font-weight:600}
-  .proc-body{background:#fff;border-radius:18px;padding:28px 30px;box-shadow:var(--sombra)}
-  .proc-body h3{font-size:1.12rem;color:var(--titulo);margin-bottom:8px;font-weight:700;letter-spacing:-.01em}
+  .proc-body{background:#fff;border-radius:18px;padding:26px 30px;box-shadow:var(--sombra);border:1px solid rgba(0,0,0,.04)}
+  .proc-step-label{display:inline-block;font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--verde-texto);margin-bottom:8px}
+  .proc-body h3{font-size:1.18rem;color:var(--titulo);margin-bottom:8px;font-weight:700;letter-spacing:-.01em}
   .proc-body p{font-size:.94rem;color:var(--cinza);line-height:1.6}
   .proc-step:nth-child(even) .proc-media{order:2}
 
@@ -566,7 +581,7 @@
     .hcap .hcap-body,.hcap:nth-child(even) .hcap-body{transition-delay:.1s}
     .hcap.in .hcap-vis,.hcap.in .hcap-body{transform:translateY(0)}
     /* processo vira coluna única */
-    .proc-flow::before{left:21px}
+    .proc-flow::before,.proc-progress{left:21px}
     .proc-step{grid-template-columns:1fr;gap:16px;padding-left:54px;margin-bottom:30px}
     .proc-node{left:21px;top:26px;transform:translate(-50%,0)}
     .proc-step:nth-child(even) .proc-media{order:0}
@@ -810,35 +825,36 @@
       <p>Um processo de ponta a ponta, pensado para que cada caixa chegue fresca, uniforme e padronizada — do plantio à sua prateleira.</p>
     </div>
     <div class="proc-flow">
+      <span class="proc-progress" aria-hidden="true"></span>
       <div class="proc-step reveal">
         <div class="proc-media"><img src="imagens/cultivo.png" alt="Cultivo das bananeiras" loading="lazy" /></div>
         <span class="proc-node">01</span>
-        <div class="proc-body"><h3>Cultivo</h3><p>Bananeiras cultivadas com manejo técnico e boas práticas agrícolas para o desenvolvimento saudável dos frutos.</p></div>
+        <div class="proc-body"><span class="proc-step-label">Etapa 01</span><h3>Cultivo</h3><p>Bananeiras cultivadas com manejo técnico e boas práticas agrícolas para o desenvolvimento saudável dos frutos.</p></div>
       </div>
       <div class="proc-step reveal">
         <div class="proc-media"><img src="imagens/acompanhamento.png" alt="Acompanhamento da lavoura" loading="lazy" /></div>
         <span class="proc-node">02</span>
-        <div class="proc-body"><h3>Acompanhamento da lavoura</h3><p>Inspeções periódicas de nutrição, controle fitossanitário e desenvolvimento dos cachos.</p></div>
+        <div class="proc-body"><span class="proc-step-label">Etapa 02</span><h3>Acompanhamento da lavoura</h3><p>Inspeções periódicas de nutrição, controle fitossanitário e desenvolvimento dos cachos.</p></div>
       </div>
       <div class="proc-step reveal">
         <div class="proc-media"><img src="imagens/colheita.png" alt="Colheita no ponto ideal" loading="lazy" /></div>
         <span class="proc-node">03</span>
-        <div class="proc-body"><h3>Colheita</h3><p>Feita no ponto ideal de maturação, preservando qualidade, resistência ao transporte e vida útil.</p></div>
+        <div class="proc-body"><span class="proc-step-label">Etapa 03</span><h3>Colheita</h3><p>Feita no ponto ideal de maturação, preservando qualidade, resistência ao transporte e vida útil.</p></div>
       </div>
       <div class="proc-step reveal">
         <div class="proc-media"><img src="imagens/selecao2.png" alt="Seleção e classificação dos frutos" loading="lazy" /></div>
         <span class="proc-node">04</span>
-        <div class="proc-body"><h3>Seleção e classificação</h3><p>Separação por padrões de qualidade, tamanho e aparência — fruta uniforme em cada caixa.</p></div>
+        <div class="proc-body"><span class="proc-step-label">Etapa 04</span><h3>Seleção e classificação</h3><p>Separação por padrões de qualidade, tamanho e aparência — fruta uniforme em cada caixa.</p></div>
       </div>
       <div class="proc-step reveal">
         <div class="proc-media"><img src="imagens/embalagem.png" alt="Embalagem padronizada" loading="lazy" /></div>
         <span class="proc-node">05</span>
-        <div class="proc-body"><h3>Embalagem</h3><p>Frutos embalados com cuidado para preservar o padrão de qualidade no transporte.</p></div>
+        <div class="proc-body"><span class="proc-step-label">Etapa 05</span><h3>Embalagem</h3><p>Frutos embalados com cuidado para preservar o padrão de qualidade no transporte.</p></div>
       </div>
       <div class="proc-step reveal">
         <div class="proc-media"><img src="imagens/distribuicao.png" alt="Distribuição logística" loading="lazy" /></div>
         <span class="proc-node">06</span>
-        <div class="proc-body"><h3>Distribuição</h3><p>Logística estruturada para manter o fornecimento sempre dentro do prazo para nossos clientes.</p></div>
+        <div class="proc-body"><span class="proc-step-label">Etapa 06</span><h3>Distribuição</h3><p>Logística estruturada para manter o fornecimento sempre dentro do prazo para nossos clientes.</p></div>
       </div>
     </div>
   </div>
@@ -1174,6 +1190,35 @@
 
     update();
     window.addEventListener('scroll', update, { passive: true });
+  })();
+
+  // ── Processo: linha de progresso + nós acendem em sequência ──
+  (function(){
+    const flow = document.querySelector('.proc-flow');
+    const fill = document.querySelector('.proc-progress');
+    if (!flow || !fill) return;
+    const nodes = [...flow.querySelectorAll('.proc-node')];
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function update(){
+      const rect = flow.getBoundingClientRect();
+      const start = rect.top + 10;               // topo da trilha (viewport)
+      const trackH = (rect.bottom - 10) - start; // altura útil da trilha
+      if (trackH <= 0) return;
+      const ref = window.innerHeight * 0.55;     // linha de referência do scroll
+      let prog = reduce ? 1 : (ref - start) / trackH;
+      prog = Math.min(1, Math.max(0, prog));
+      fill.style.height = (prog * trackH) + 'px';
+      const tipY = start + prog * trackH;        // ponta da linha (viewport)
+      nodes.forEach(function(node){
+        const nr = node.getBoundingClientRect();
+        node.classList.toggle('reached', (nr.top + nr.height / 2) <= tipY + 2);
+      });
+    }
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
   })();
 
   // Ano no rodapé
