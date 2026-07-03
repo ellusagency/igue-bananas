@@ -441,6 +441,9 @@
 
   /* ===================== NÚMEROS (faixa amarela alinhada + motion) ===================== */
   .numeros{padding:86px 0;background:var(--amarelo);color:#000;text-align:center}
+  .numeros .num-head{max-width:var(--max);margin:0 auto 48px;padding:0 24px}
+  .numeros .num-head h2{font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.7rem,3.6vw,2.5rem);color:#0e0e0c;letter-spacing:-.015em;line-height:1.1}
+  .numeros .num-head h2::after{content:"";display:block;width:46px;height:3px;background:var(--verde-texto);border-radius:2px;margin:18px auto 0}
   .numeros .wrap{display:grid;grid-template-columns:repeat(4,1fr);align-items:stretch}
   .numeros .nbox{
     position:relative;padding:48px 28px;
@@ -990,6 +993,9 @@
 
 <!-- ============ 8. NÚMEROS ============ -->
 <section class="numeros">
+  <div class="num-head reveal">
+    <h2>Nossos números</h2>
+  </div>
   <div class="wrap">
     <div class="nbox reveal"><div class="nn" data-count="66">66</div><div class="nl">anos de mercado</div></div>
     <div class="nbox reveal" style="transition-delay:.08s"><div class="nn" data-count="3">3</div><div class="nl">gerações de produtores</div></div>
