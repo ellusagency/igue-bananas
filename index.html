@@ -1138,12 +1138,16 @@
   document.getElementById('menuToggle').addEventListener('click', () => nav.classList.toggle('open'));
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
 
-  // Carrossel de logos (espaços reservados) — gera slots e duplica p/ loop contínuo
+  // Carrossel de logos de clientes — repete p/ preencher a faixa e duplica p/ loop contínuo
   (function(){
     const track = document.getElementById('logoTrack');
-    const N = 8;
-    const slot = `<div class="logo-slot"><img src="imagens/logo_igue.jpeg" alt="Igue Bananas" /></div>`;
-    track.innerHTML = slot.repeat(N) + slot.repeat(N); // duplicado p/ marquee -50%
+    const logos = [
+      {src:'imagens/cliente1.jpeg', alt:'Cliente da Igue Bananas'},
+      {src:'imagens/cliente2.png',  alt:'Cliente da Igue Bananas'}
+    ];
+    const slot = l => `<div class="logo-slot"><img src="${l.src}" alt="${l.alt}" loading="lazy" /></div>`;
+    const set = logos.map(slot).join('').repeat(6);
+    track.innerHTML = set + set; // duplicado p/ marquee -50%
   })();
 
   // Reveal on scroll
