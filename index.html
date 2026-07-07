@@ -407,7 +407,7 @@
   .produto .section-head{margin-bottom:64px}
   .produto .grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
   .prod-visual{aspect-ratio:1/1;border-radius:26px;position:relative;overflow:hidden;border:1px solid var(--cinza-claro);background:var(--amarelo-soft);box-shadow:18px 18px 0 var(--amarelo-borda),0 26px 50px -26px rgba(0,0,0,.32)}
-  .prod-visual.nanica{background:var(--verde-soft);box-shadow:-18px 18px 0 rgba(126,171,80,.4),0 26px 50px -26px rgba(0,0,0,.32)}
+  .prod-visual.verde{background:var(--verde-soft);box-shadow:-18px 18px 0 rgba(126,171,80,.4),0 26px 50px -26px rgba(0,0,0,.32)}
   .prod-visual img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
   .prod-visual:hover img{transform:scale(1.05)}
   .prod-visual .selo{position:absolute;top:18px;left:18px;z-index:2;background:var(--amarelo);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.78rem;padding:8px 15px;border-radius:999px;letter-spacing:.04em;box-shadow:var(--sombra-sm)}
@@ -561,8 +561,8 @@
     .produto .grid,.produto .grid.flip{gap:32px}
     .produto .grid.flip .prod-visual{order:-1}
     .produto .section-head{margin-bottom:40px}
-    .prod-visual,.prod-visual.nanica{box-shadow:10px 10px 0 var(--amarelo-borda),0 20px 40px -24px rgba(0,0,0,.3)}
-    .prod-visual.nanica{box-shadow:10px 10px 0 rgba(126,171,80,.38),0 20px 40px -24px rgba(0,0,0,.3)}
+    .prod-visual,.prod-visual.verde{box-shadow:10px 10px 0 var(--amarelo-borda),0 20px 40px -24px rgba(0,0,0,.3)}
+    .prod-visual.verde{box-shadow:10px 10px 0 rgba(126,171,80,.38),0 20px 40px -24px rgba(0,0,0,.3)}
     .prod-divider{margin:48px 0}
     .stacks-scroller{height:auto;padding:0 16px}
     .stacks-sticky{position:static;height:auto;display:block}
@@ -883,15 +883,15 @@
       <p>Da prata firme e marcante à nanica suave e versátil — cada caixa carrega o mesmo rigor do campo à entrega.</p>
     </div>
     <div class="grid">
-      <div class="prod-visual reveal">
-        <span class="selo">Banana Prata</span>
+      <div class="prod-visual verde reveal">
+        <span class="selo verde">Banana Prata</span>
         <img src="imagens/banana_prata.jpeg" alt="Cacho de banana prata com a etiqueta da marca Igue Bananas" />
       </div>
       <div class="prod-copy reveal">
-        <span class="prod-kicker">Carro-chefe da casa</span>
+        <span class="prod-kicker verde">Carro-chefe da casa</span>
         <h3>Banana Prata: a especialidade da casa.</h3>
         <p class="lead">A banana prata é o coração da Igue. Foi a aposta pioneira da nossa família e segue sendo nossa referência: fruta firme, de sabor marcante e excelente resistência — qualidade garantida da colheita à entrega.</p>
-        <div class="prod-chips">
+        <div class="prod-chips verde">
           <span>Sabor marcante</span>
           <span>Fruta firme e padronizada</span>
           <span>Resistente ao transporte</span>
@@ -903,17 +903,17 @@
 
     <div class="grid flip">
       <div class="prod-copy reveal">
-        <span class="prod-kicker verde">Frescor e versatilidade</span>
+        <span class="prod-kicker">Frescor e versatilidade</span>
         <h3>Banana Nanica: frescor e versatilidade.</h3>
         <p class="lead">A nanica da Igue tem casca fina, polpa suave e doçura equilibrada — perfeita para consumo in natura, processamento e food service. Colhida com o mesmo rigor da prata, chega firme, uniforme e pronta para encantar.</p>
-        <div class="prod-chips verde">
+        <div class="prod-chips">
           <span>Polpa suave e adocicada</span>
           <span>Ideal para food service</span>
           <span>Alta produtividade</span>
         </div>
       </div>
-      <div class="prod-visual nanica reveal">
-        <span class="selo verde">Banana Nanica</span>
+      <div class="prod-visual reveal">
+        <span class="selo">Banana Nanica</span>
         <img src="imagens/banana_nanica.jpeg" alt="Cachos de banana nanica frescos da Igue Bananas" loading="lazy" />
       </div>
     </div>
