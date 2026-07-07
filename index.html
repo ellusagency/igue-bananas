@@ -515,6 +515,19 @@
   .wa-float svg{width:32px;height:32px;color:#fff}
   @keyframes pulse{0%{box-shadow:0 14px 30px -8px rgba(35,164,85,.7),0 0 0 0 rgba(35,164,85,.5)}70%{box-shadow:0 14px 30px -8px rgba(35,164,85,.7),0 0 0 16px rgba(35,164,85,0)}100%{box-shadow:0 14px 30px -8px rgba(35,164,85,.7),0 0 0 0 rgba(35,164,85,0)}}
 
+  /* Botão voltar ao topo — sutil, empilhado acima do WhatsApp */
+  .to-top{
+    position:fixed;right:29px;bottom:96px;z-index:90;
+    width:46px;height:46px;border-radius:50%;
+    display:grid;place-items:center;cursor:pointer;
+    background:transparent;border:1.5px solid var(--verde);color:var(--verde-texto);
+    opacity:0;visibility:hidden;transform:translateY(8px);
+    transition:opacity .3s ease,transform .3s ease,background .2s ease,color .2s ease;
+  }
+  .to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+  .to-top:hover{background:var(--verde);color:#fff}
+  .to-top svg{width:20px;height:20px;display:block}
+
   /* ===================== REVEAL ===================== */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
@@ -1093,11 +1106,25 @@
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.5-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.3 5.1 4.6 1.9.8 2.6.9 3.5.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4M12 22a10 10 0 01-5.1-1.4L3 22l1.4-3.8A10 10 0 1112 22z"/></svg>
 </a>
 
+<button class="to-top" id="toTop" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
 <script>
   // Header: leve reforço de sombra ao rolar (a sombra base existe sempre)
   const header = document.getElementById('header');
   const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 30);
   onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Botão voltar ao topo — aparece após rolar além do hero
+  const toTop = document.getElementById('toTop');
+  const toggleToTop = () => toTop.classList.toggle('show', window.scrollY > window.innerHeight * 0.8);
+  toggleToTop();
+  window.addEventListener('scroll', toggleToTop, {passive:true});
+  toTop.addEventListener('click', () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  });
 
   // Menu mobile
   const nav = document.getElementById('nav');
