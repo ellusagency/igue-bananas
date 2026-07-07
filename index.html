@@ -473,10 +473,10 @@
     margin:0 auto 10px;
   }
 
-  /* ===================== SHOWCASE (key visual da marca) ===================== */
-  .showcase{padding:72px 0;background:var(--branco)}
-  .showcase-frame{border-radius:24px;overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--cinza-claro);line-height:0}
-  .showcase-frame img{width:100%;height:auto;display:block}
+  /* ===================== SHOWCASE (key visual full-bleed) ===================== */
+  .showcase{background:var(--branco);line-height:0}
+  .showcase img{display:block;width:100%;height:auto}
+  @media(max-width:680px){.showcase img{height:340px;object-fit:cover;object-position:center}}
 
   /* ===================== CTA FINAL ===================== */
   .cta{padding:96px 0;background:var(--creme)}
@@ -1032,11 +1032,7 @@
 
 <!-- ============ KEY VISUAL DA MARCA ============ -->
 <section class="showcase" aria-label="O sabor da qualidade começa aqui">
-  <div class="wrap">
-    <div class="showcase-frame reveal">
-      <img src="imagens/bananasigue.png" alt="Cacho de banana prata da Igue Bananas com a caixa da marca — o sabor da qualidade começa aqui" loading="lazy" />
-    </div>
-  </div>
+  <img src="imagens/bananasiguemax.jpg" alt="Cacho de banana prata da Igue Bananas com a caixa da marca — o sabor da qualidade começa aqui" loading="lazy" />
 </section>
 
 <!-- ============ 9. CTA FINAL ============ -->
