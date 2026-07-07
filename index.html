@@ -436,7 +436,11 @@
   .reg-card p{font-size:.88rem;color:var(--cinza)}
   .reg-micro{margin-top:24px;font-size:.98rem;color:var(--cinza);padding-left:16px;border-left:3px solid var(--amarelo);line-height:1.55}
   .reg-photo{aspect-ratio:1/1;border-radius:26px;overflow:hidden;box-shadow:var(--sombra);border:1px solid var(--cinza-claro);background:var(--verde-soft)}
-  .reg-map{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--creme);border:2px dashed var(--cinza-claro);box-shadow:none}
+  .reg-map{position:relative;background:var(--verde-soft);padding:0}
+  .reg-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .reg-map-link{position:absolute;left:14px;top:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.94);color:var(--titulo);font-family:'Poppins',sans-serif;font-weight:600;font-size:.8rem;padding:8px 13px;border-radius:999px;box-shadow:var(--sombra-sm);transition:background .2s,transform .2s}
+  .reg-map-link:hover{background:#fff;transform:translateY(-1px)}
+  .reg-map-link svg{width:15px;height:15px;color:var(--verde-texto)}
   .reg-photo img{width:100%;height:100%;object-fit:cover}
 
   /* ===================== NÚMEROS (faixa amarela alinhada + motion) ===================== */
@@ -998,8 +1002,11 @@
         <p class="reg-micro">Roteiros planejados e prazos cumpridos para abastecer a sua operação com a regularidade que o seu negócio precisa.</p>
       </div>
       <div class="reg-photo reg-map reveal">
-        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" style="width:52px;height:52px;color:var(--cinza)"><path d="M24 4C15.2 4 8 11.2 8 20c0 12 16 28 16 28s16-16 16-28c0-8.8-7.2-16-16-16z" stroke-linejoin="round"/><circle cx="24" cy="20" r="5"/></svg>
-        <span style="font-family:'Poppins',sans-serif;font-weight:600;font-size:.9rem;color:var(--cinza);margin-top:10px">Mapa em breve</span>
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-47.1385%2C-24.2882%2C-47.1085%2C-24.2682&layer=mapnik&marker=-24.2781756%2C-47.1235078" title="Localização da Igue Bananas no Vale do Ribeira" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="reg-map-link" href="https://maps.app.goo.gl/FK6VGaNRWfTbKDWn7" target="_blank" rel="noopener" aria-label="Abrir a localização da Igue Bananas no Google Maps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Ver no Google Maps
+        </a>
       </div>
     </div>
   </div>
