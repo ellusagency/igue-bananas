@@ -474,9 +474,10 @@
   }
 
   /* ===================== SHOWCASE (key visual full-bleed) ===================== */
-  .showcase{background:var(--branco);line-height:0}
+  .showcase{background:var(--branco);line-height:0;padding-top:clamp(28px,4vw,48px)}
   .showcase picture{display:block}
   .showcase img{display:block;width:100%;height:auto;will-change:opacity}
+  @media(max-width:680px){.showcase img{aspect-ratio:1/1.05;object-fit:cover;object-position:center}}
 
   /* ===================== CTA FINAL ===================== */
   .cta{padding:96px 0;background:var(--creme)}
