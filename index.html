@@ -475,8 +475,8 @@
 
   /* ===================== SHOWCASE (key visual full-bleed) ===================== */
   .showcase{background:var(--branco);line-height:0}
+  .showcase picture{display:block}
   .showcase img{display:block;width:100%;height:auto;will-change:opacity}
-  @media(max-width:680px){.showcase img{height:340px;object-fit:cover;object-position:center}}
 
   /* ===================== CTA FINAL ===================== */
   .cta{padding:96px 0;background:var(--creme)}
@@ -898,7 +898,10 @@
 
 <!-- ============ KEY VISUAL DA MARCA ============ -->
 <section class="showcase" aria-label="O sabor da qualidade começa aqui">
-  <img src="imagens/bananasiguemax.jpg" alt="Cacho de banana prata da Igue Bananas com a caixa da marca — o sabor da qualidade começa aqui" loading="lazy" />
+  <picture>
+    <source media="(max-width:680px)" srcset="imagens/banner_mobile.jpg" />
+    <img src="imagens/bananasiguemax.jpg" alt="Cacho de banana prata da Igue Bananas com a caixa da marca — o sabor da qualidade começa aqui" loading="lazy" />
+  </picture>
 </section>
 
 <!-- ============ 6. PRODUTO — BANANA PRATA ============ -->
