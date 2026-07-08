@@ -868,7 +868,7 @@
         <div class="proc-body"><span class="proc-step-label">Etapa 02</span><h3>Acompanhamento da lavoura</h3><p>Inspeções periódicas de nutrição, controle fitossanitário e desenvolvimento dos cachos.</p></div>
       </div>
       <div class="proc-step reveal">
-        <div class="proc-media"><img src="imagens/colheita.jpg" alt="Colheita no ponto ideal" loading="lazy" /></div>
+        <div class="proc-media"><img src="imagens/colheita1.jpg" alt="Colheita no ponto ideal" loading="lazy" /></div>
         <span class="proc-node">03</span>
         <div class="proc-body"><span class="proc-step-label">Etapa 03</span><h3>Colheita</h3><p>Feita no ponto ideal de maturação, preservando qualidade, resistência ao transporte e vida útil.</p></div>
       </div>
@@ -1151,10 +1151,15 @@
     const track = document.getElementById('logoTrack');
     const logos = [
       {src:'imagens/cliente1.jpeg', alt:'Cliente da Igue Bananas'},
-      {src:'imagens/cliente2.png',  alt:'Cliente da Igue Bananas'}
+      {src:'imagens/cliente2.png',  alt:'Cliente da Igue Bananas'},
+      {src:'imagens/cliente3.jpeg', alt:'Cliente da Igue Bananas'},
+      {src:'imagens/cliente4.jpeg', alt:'Cliente da Igue Bananas'},
+      {src:'imagens/cliente5.jpeg', alt:'Cliente da Igue Bananas'},
+      {src:'imagens/cliente6.jpeg', alt:'Cliente da Igue Bananas'},
+      {src:'imagens/cliente7.jpeg', alt:'Cliente da Igue Bananas'}
     ];
     const slot = l => `<div class="logo-slot"><img src="${l.src}" alt="${l.alt}" loading="lazy" /></div>`;
-    const set = logos.map(slot).join('').repeat(6);
+    const set = logos.map(slot).join('').repeat(3);
     track.innerHTML = set + set; // duplicado p/ marquee -50%
   })();
 
