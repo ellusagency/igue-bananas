@@ -474,8 +474,8 @@
   }
 
   /* ===================== SHOWCASE (key visual full-bleed) ===================== */
-  .showcase{background:var(--branco);line-height:0;overflow:hidden}
-  .showcase img{display:block;width:100%;height:auto;will-change:clip-path,transform,opacity}
+  .showcase{background:var(--branco);line-height:0}
+  .showcase img{display:block;width:100%;height:auto;will-change:opacity}
   @media(max-width:680px){.showcase img{height:340px;object-fit:cover;object-position:center}}
 
   /* ===================== CTA FINAL ===================== */
@@ -1302,14 +1302,12 @@
     function update(){
       const rect = sec.getBoundingClientRect();
       const vh = window.innerHeight;
-      const start = vh * 0.95;   // p=0: seção começa a entrar por baixo
-      const end = vh * 0.15;     // p=1: topo sobe até 15% da tela (completa)
+      const start = vh * 0.9;    // p=0: seção começa a entrar por baixo (opacidade 0)
+      const end = vh * 0.12;     // p=1: topo sobe até 12% da tela (opacidade máxima)
       let p = (start - rect.top) / (start - end);
       p = Math.min(1, Math.max(0, p));
-      const e = 1 - Math.pow(1 - p, 2); // easeOutQuad (mais linear ao scroll)
-      img.style.clipPath = `inset(${(1 - e) * 34}% 0%)`;   // fenda central -> completa
-      img.style.transform = `scale(${1.07 - e * 0.07})`;    // leve zoom-out
-      img.style.opacity = (0.45 + e * 0.55).toFixed(3);     // surge suavemente
+      const e = 1 - Math.pow(1 - p, 2); // easeOutQuad
+      img.style.opacity = e.toFixed(3); // fade puro: 0 -> 1 conforme desce
     }
     update();
     window.addEventListener('scroll', update, { passive:true });
