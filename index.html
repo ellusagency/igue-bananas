@@ -496,6 +496,9 @@
   .cta-form textarea{resize:vertical;min-height:88px}
   .cta-form .row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
   .cta-form button{width:100%;justify-content:center;margin-top:8px}
+  .form-msg{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:.9rem;font-weight:600;line-height:1.45;display:none}
+  .form-msg.ok{display:block;background:var(--verde-soft);color:var(--verde-texto);border:1px solid rgba(79,122,46,.3)}
+  .form-msg.erro{display:block;background:#fdeceb;color:#b3261e;border:1px solid rgba(179,38,30,.28)}
 
   /* ===================== RODAPÉ ===================== */
   footer{background:var(--branco);color:#4a4a44;padding:60px 0 28px;border-top:1px solid var(--cinza-claro)}
@@ -1054,7 +1057,10 @@
       <div class="cta-form">
         <h3>Prefere que a gente entre em contato?</h3>
         <p class="fsub">Deixe seus dados — respondemos em breve.</p>
-        <form id="leadForm" onsubmit="return enviarWhatsApp(event)">
+        <form id="leadForm" action="https://formsubmit.co/ajax/iguebananas@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Novo contato pelo site — Igue Bananas" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
           <div class="row">
             <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" required placeholder="Seu nome" /></div>
             <div class="field"><label for="empresa">Empresa</label><input id="empresa" name="empresa" type="text" placeholder="Nome da empresa" /></div>
@@ -1075,6 +1081,7 @@
           </div>
           <div class="field"><label for="msg">Mensagem</label><textarea id="msg" name="msg" placeholder="Conte sua demanda: produto, volume e frequência."></textarea></div>
           <button class="btn btn-primary" type="submit">Enviar para o comercial →</button>
+          <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -1341,19 +1348,40 @@
   // Ano no rodapé
   document.getElementById('ano').textContent = new Date().getFullYear();
 
-  // Form -> WhatsApp
-  function enviarWhatsApp(ev){
-    ev.preventDefault();
-    const v = id => (document.getElementById(id).value || '').trim();
-    const txt = `Olá! Vim pelo site da Igue Bananas.%0A%0A`+
-      `*Nome:* ${v('nome')}%0A`+
-      `*Empresa:* ${v('empresa')||'—'}%0A`+
-      `*Tipo de negócio:* ${v('tipo')}%0A`+
-      `*Cidade:* ${v('cidade')||'—'}%0A`+
-      `*Mensagem:* ${v('msg')||'—'}`;
-    window.open(`https://wa.me/5513996161462?text=${txt}`, '_blank');
-    return false;
-  }
+  // Formulário -> e-mail (FormSubmit, sem backend) — envio via AJAX
+  (function(){
+    const form = document.getElementById('leadForm');
+    if (!form) return;
+    const msg = document.getElementById('formMsg');
+    const btn = form.querySelector('button[type="submit"]');
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const label = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Enviando…';
+      msg.className = 'form-msg';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+        if (res.ok) {
+          form.reset();
+          msg.textContent = 'Recebemos sua mensagem! Nosso time comercial vai entrar em contato em breve.';
+          msg.classList.add('ok');
+        } else {
+          const data = await res.json().catch(() => ({}));
+          msg.textContent = (data && data.message) || 'Não foi possível enviar agora. Tente novamente ou fale pelo WhatsApp.';
+          msg.classList.add('erro');
+        }
+      } catch (e) {
+        msg.textContent = 'Falha de conexão. Tente novamente ou fale pelo WhatsApp.';
+        msg.classList.add('erro');
+      } finally {
+        btn.disabled = false; btn.textContent = label;
+      }
+    });
+  })();
 </script>
 </body>
 </html>
